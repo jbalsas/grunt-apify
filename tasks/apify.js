@@ -8,15 +8,16 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-    grunt.registerMultiTask("apify", "Grunt plugin for apify", function() {
+    grunt.registerMultiTask("apify", "Grunt plugin for apify", function () {
         var defaults    = require("apify/lib/defaults.json"),
             documenter  = require("apify/lib/Documenter"),
             done        = this.async();
         
         // Resolve absolute path for default templates and assets
         var templates = Object.keys(defaults.templates);
+        
         templates.forEach(function (templateName) {
             defaults.templates[templateName] = "node_modules/apify/bin/" + defaults.templates[templateName];
         });
@@ -27,7 +28,13 @@ module.exports = function(grunt) {
         defaults.output = this.output || "docs";
         defaults.title = this.title || "";
         
-        documenter.init(defaults);
+        documenter.init(defaults).then(function (err) {
+            if (err) {
+                done(err);
+            } else {
+                done(true);
+            }
+        });
     });
 
 };
