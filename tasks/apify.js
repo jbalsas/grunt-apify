@@ -25,9 +25,9 @@ module.exports = function (grunt) {
         
         defaults.assets = path.resolve(__dirname + "/../node_modules/apify/bin/" + defaults.assets);
         
-        defaults.source = this.src || "src";
-        defaults.output = this.output || "docs";
-        defaults.title = this.title || "";
+        defaults.source = this.options().src || "src";
+        defaults.output = this.options().output || "docs";
+        defaults.title = this.options().title || "";
         
         documenter.init(defaults).then(function (err) {
             if (err) {
