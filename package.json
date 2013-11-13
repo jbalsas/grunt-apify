@@ -1,7 +1,7 @@
 {
   "name": "grunt-apify",
   "description": "Grunt plugin for apify",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "homepage": "https://github.com/jbalsas/grunt-apify",
   "author": {
     "name": "Chema Balsas",
